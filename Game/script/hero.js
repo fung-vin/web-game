@@ -19,16 +19,11 @@ var Hero = function(){
   }
 
 
-
   this.render = function(control){
-
-    //console.clear();
-    //console.log(control);
 
     if(control.key_up){
       top -= speed;
       element.style.top = top + "px";
-      fire();
     }
 
     if(control.key_down){
@@ -46,8 +41,20 @@ var Hero = function(){
       element.style.left = left + "px";
     }
 
+    if(control.key_space){
+      fire();
+      control.key_space = false;
+    }
+
+
     for (var i = bullets.length - 1; i >= 0; i--) {
       bullets[i].render();
+
+      if(bullets[i].y < 0 ){
+        $(bullets[i].element).remove();
+        bullets.splice(i,1);
+      }
+
     }
 
 

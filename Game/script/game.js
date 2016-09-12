@@ -40,6 +40,7 @@ var Game = function(){
       hero.render(control);
     }
 
+
   }
 
   window.requestAnimFrame = (function(){

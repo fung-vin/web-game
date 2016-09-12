@@ -14,7 +14,7 @@ var Control = function(){
 
     var keyName = event.key;
 
-    console.log("Keyname: " + keyName);
+    console.log("Space: \"" + keyName + "\"" );
 
     switch(keyName) {
       case "ArrowRight":
@@ -29,8 +29,8 @@ var Control = function(){
       case "ArrowDown":
           self.key_down = false;
           break;
-      case "ArrowDown":
-          self.key_down = false;
+      case " ":
+          self.key_space = false;
           break;
       default:
           break;
@@ -55,6 +55,9 @@ var Control = function(){
           break;
       case "ArrowDown":
           self.key_down = true;
+          break;
+      case " ":
+          self.key_space = true;
           break;
       default:
           break;

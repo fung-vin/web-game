@@ -3,26 +3,30 @@ var heroBullet = function (x, y){
 
   var x = x;
   var y = y;
-  var speed = 2;
+  var speed = 5;
   var element = null;
 
 
   var create = function(){
-      // Create Element
-
+    // Create Element
     element = $('<div class="bullet"></div>')[0];
     $('#gameboard').append(element);
-    element.style.top = y + "px";
-    element.style.left = x + "px";
+    element.style.top = (y + 50) + "px";
+    element.style.left = (x + 12) + "px";
   }
 
-
   this.render = function(){
-    element.style.top = (y - speed) + "px";
+
+    y -= speed;
+    element.style.top = y + "px";
+
+    if(y< 0){
+      $(element).remove();
+    }
+
   }
 
   create();
-
 }
 
 /*
