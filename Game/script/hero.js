@@ -10,8 +10,10 @@ var Hero = function(){
   var bullets = [];
 
   var createHero = function(){
+
    element = $('<div id="hero"></div>')[0];
    $('#gameboard').append(element);
+
   }
 
   var fire = function() {

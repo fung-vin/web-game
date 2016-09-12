@@ -6,7 +6,7 @@ var Game = function(){
 
   // game sprites
   var hero = null;
-  var enemies = [];
+  var enemies = null;
 
   // Controls
   var control = new Control();
@@ -15,31 +15,26 @@ var Game = function(){
   var init = function(){
 
     // Create the player
+
     hero = new Hero();
 
-    // Create the world
-    arena = new Arena();
-
     // Create enemies
-    for (var i = 0; i < 4; i++) {
-      if(enemies < 5){
-        enemies.push(new Enemy());
-      }
-    }
-    enemies++
+
+    enemies = new Enemy();
 
     // Reset global gameing vars
 
 
   }
 
-
   var gameloop = function(){
 
     if(hero != null){
-      hero.render(control);
+      hero.render(control);  // what is this hero refering to?
     }
-
+    if(enemies != null){
+      enemies.render();
+    }
 
   }
 
