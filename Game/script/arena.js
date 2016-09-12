@@ -5,9 +5,12 @@ var Arena = function(){
   height: 800;
   width: 1000;
 
+  var element = null;
+
   var createArena = function(){
 
-      arena = $('<div class="arena"></div>');
+      element = $('<div class="arena"></div>');
+      $('#gameboard').append(element);
 
     }
 

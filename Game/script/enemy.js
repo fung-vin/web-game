@@ -6,17 +6,13 @@ var Enemy = function (){
   var width = 50;
   var xSpeed = 3;
   var ySpeed = 3;
-  var totalEnemy = 0;
 
   var element = null;
 
   var createEnemy = function(){
 
-    if (totalEnemy < 5){
-      element = $('<div class="enemy"></div>');
-      $('#gameboard').append(element);
-      totalEnemy++;
-    }
+    element = $('<div class="enemy"></div>');
+    $('#gameboard').append(element);
 
   }
 
