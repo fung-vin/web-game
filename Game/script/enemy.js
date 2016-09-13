@@ -9,15 +9,16 @@ var Enemy = function (){
   var bullets = [];
   var element = null;
   var ranNum = Math.floor((Math.random() * 600) + 1);
-  var direction = "down";
   var isFiring = false;
   var ySpeedRev = ySpeed * -1;
+  var x_direction = "right";
+  var y_direction = "down";
 
   var createEnemy = function(){
 
     element = $('<div class="enemy"></div>')[0];
     $('#gameboard').append(element);
-    left = ranNum;
+//    left = ranNum;
     element.style.left = left + "px";
 
   }
@@ -27,6 +28,44 @@ var Enemy = function (){
   }
 
   this.render = function(){
+
+    if(top > 768){
+      y_direction = "up"
+    }
+
+    if(top < 0){
+      y_direction = "down"
+    }
+
+    if(left > 618){
+      x_direction = "left"
+    }
+
+    if(left < 0){
+      x_direction = "right"
+    }
+
+    if(x_direction == "left"){
+      left -= xSpeed;
+      element.style.left = left + "px";
+    }
+
+    if(x_direction == "right"){
+      left += xSpeed;
+      element.style.left = left + "px";
+    }
+
+    if(y_direction == "down"){
+      top += ySpeed;
+      element.style.top = top + "px";
+    }
+
+    if(y_direction == "up"){
+      top -= ySpeed;
+      element.style.top = top + "px";
+    }
+
+/*
 
    if (direction == "down") {
       top += ySpeed;
@@ -38,36 +77,53 @@ var Enemy = function (){
       }
     }
 
-    if (direction == "up") {
-      top -= ySpeed;
-      element.style.top = top + "px";
-      left += xSpeed;
-      element.style.left = left + "px";
-    }
 
-    if(top > 400){
-      direction = "up";
-    }
-
-    if(direction == "down" && !isFiring){
-
-      isFiring = true;
-      setInterval(function(){
-        enemyFire();
-        isFiring = false;
-      }, 500);
+    if (top =< 0 ){
 
     }
 
-    for (var i = bullets.length - 1; i >= 0; i--) {
-      bullets[i].render();
-
-      if(bullets[i].y > 790 ){
-        $(bullets[i].element).remove();
-        bullets.splice(i,1);
-      }
-
+    if (top < 0 && left < 0){
+      xSpeed *= -1;
+      ySpeed *= -1;
     }
+
+    if(top > 768 && left < 0){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if (left > 618 && top > 768) {
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if(left > 618 && top < 0){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if(left > 618){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if(left < 0){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if(top > 768){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    if(top < 0){
+      xSpeed *= -1;
+      ySpeed *= -1;
+    }
+
+    */
+
 
   }
 
