@@ -4,12 +4,13 @@ var Enemy = function (){
   var left = 0;
   var height = 32;
   var width = 32;
-  var xSpeed = 0; //2;
-  var ySpeed = 0; //3;
+  var xSpeed = 2;
+  var ySpeed = 3;
   var bullets = [];
   var element = null;
   var ranNum = Math.floor((Math.random() * 600) + 1);
   var direction = "down";
+  var isFiring = false;
 
   var createEnemy = function(){
 
@@ -44,8 +45,24 @@ var Enemy = function (){
       direction = "up";
     }
 
-    if(direction == "down"){
-      enemyFire();
+    if(direction == "down" && !isFiring){
+
+      isFiring = true;
+      setInterval(function(){
+        enemyFire();
+        isFiring = false;
+      }, 500);
+
+    }
+
+    for (var i = bullets.length - 1; i >= 0; i--) {
+      bullets[i].render();
+
+      if(bullets[i].y > 790 ){
+        $(bullets[i].element).remove();
+        bullets.splice(i,1);
+      }
+
     }
 
   }
