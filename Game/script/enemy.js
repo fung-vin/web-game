@@ -11,6 +11,7 @@ var Enemy = function (){
   var ranNum = Math.floor((Math.random() * 600) + 1);
   var direction = "down";
   var isFiring = false;
+  var ySpeedRev = ySpeed * -1;
 
   var createEnemy = function(){
 
@@ -32,6 +33,9 @@ var Enemy = function (){
       element.style.top = top + "px";
       left += xSpeed;
       element.style.left = left + "px";
+      if(top <= 0 ){
+        ySpeed = ySpeedRev;
+      }
     }
 
     if (direction == "up") {

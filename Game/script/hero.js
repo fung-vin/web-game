@@ -26,21 +26,33 @@ var Hero = function(){
 
     if(control.key_up){
       top -= speed;
+      if(top <= 0 ){
+        top = 0;
+      }
       element.style.top = top + "px";
     }
 
     if(control.key_down){
       top += speed;
+      if(top >= 768 ){
+        top = 768;
+      }
       element.style.top = top + "px";
     }
 
     if(control.key_left){
       left -= speed;
+      if(left <= 0 ){
+        left = 0;
+      }
       element.style.left = left + "px";
     }
 
     if(control.key_right){
       left += speed;
+      if(left >= 618 ){
+        left = 618;
+      }
       element.style.left = left + "px";
     }
 
