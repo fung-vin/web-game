@@ -17,7 +17,7 @@ var Hero = function(){
   }
 
   var fire = function() {
-    bullets.push(new heroBullet(left, top));
+    bullets.push(new heroBullet(left, top)); // creates new bullet for hero
   }
 
 
@@ -47,7 +47,6 @@ var Hero = function(){
       fire();
       control.key_space = false;
     }
-
 
     for (var i = bullets.length - 1; i >= 0; i--) {
       bullets[i].render();

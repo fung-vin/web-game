@@ -30,12 +30,11 @@ var Game = function(){
   var gameloop = function(){
 
     if(hero != null){
-      hero.render(control);  // what is this hero refering to?
+      hero.render(control);
     }
     if(enemies != null){
       enemies.render();
     }
-
   }
 
   window.requestAnimFrame = (function(){
