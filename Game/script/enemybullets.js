@@ -6,12 +6,13 @@ var enemyBullet = function (x, y){
   var element = null;
 
   var create = function(){
-
-    element = $('div class="enemyBullet"></div>');
+    element = $('<div class="enemyBullet"></div>')[0];
       $('#gameboard').append(element);
-      element.style.top = (y - 50) + "px";
+      element.style.top = (y + 33) + "px";
       element.style.left = (x + 12) + "px";
   }
+
+  create();
 
   this.render = function (){
 
@@ -21,7 +22,6 @@ var enemyBullet = function (x, y){
     if(y > 800){
       $(element).remove();
     }
-
   }
 
 }

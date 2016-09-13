@@ -2,8 +2,8 @@ var Hero = function(){
 
   var height = 32;
   var width = 32;
-  var top = 0;
-  var left = 0;
+  var top = 600;
+  var left = 300;
   var speed = 4;
   var heroHealth = 3;
   var element = null;
@@ -13,7 +13,8 @@ var Hero = function(){
 
    element = $('<div id="hero"></div>')[0];
    $('#gameboard').append(element);
-
+   element.style.top = top + "px";
+   element.style.left = left + "px";
   }
 
   var fire = function() {

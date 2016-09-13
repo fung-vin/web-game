@@ -24,7 +24,6 @@ var Game = function(){
 
     // Reset global gameing vars
 
-
   }
 
   var gameloop = function(){
@@ -57,8 +56,5 @@ var Game = function(){
     init();
   });
 }
-
-
-
 
 var g = new Game();
