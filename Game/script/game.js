@@ -10,37 +10,44 @@ window.requestAnimFrame = (function(){
 var Game = function(){
   // game sprites
   var hero = null;
-  var enemies = null;
-  var enemiesTwo = null;
+  var enemy = null;
+  // var enemyTwo = null;
 
   // Controls
   var control = new Control();
 
   var gameloop = function(){
-
     if(hero != null){
       hero.render(control);
     }
-    if(enemies != null){
-      enemies.render();
-    }
-    // if(enemiesTwo != null){
-    //   enemiesTwo.render();
-    // }
-    var enemyPosition = enemies.getPosition();
-    var heroBullets = hero.getBullets();
 
-    for (var i = 0; i < heroBullets.length; i++) {
+    if (enemy != null) {
+      if (enemy.checkDeath()) {
+        enemy = null;
+      } else {
+        enemy.render(); // move bullets/enemy wether enemy is alive or not
 
-      if(heroBullets[i].x < enemyPosition.top + enemyPosition.left &&
-         heroBullets[i].x + heroBullets[i].width > enemyPosition.left &&
-         heroBullets[i].y < enemyPosition.top + enemyPosition.height &&
-         heroBullets[i].height + heroBullets[i].top > enemyPosition.top) {
-        console.log("test")
-        enemies.getEnemy().remove();
+        // Check for collision only if enemy is alive
+        if (enemy.alive()) {
+          var enemyPosition = enemy.getPosition();
+          var heroBullets   = hero.getBullets();
+
+          for (var i = 0; i < heroBullets.length; i++) {
+            var heroBullet = heroBullets[i];
+            var bulletInfo = heroBullet.getBulletInfo();
+
+            if(bulletInfo.x < enemyPosition.left + enemyPosition.width &&
+               bulletInfo.x + bulletInfo.width > enemyPosition.left &&
+               bulletInfo.y < enemyPosition.top + enemyPosition.height &&
+               bulletInfo.y +bulletInfo.height > enemyPosition.top) {
+              enemy.getEnemy().remove(); // only remove element from dom
+              enemy.alive(false); // set alive to false
+            }
+          }
+        }
       }
     }
-  }
+  };
 
   var animloop = function () {
     requestAnimFrame(animloop);
@@ -51,11 +58,11 @@ var Game = function(){
     // Create the player
     hero = new Hero();
 
-    // Create enemies
+    // Create enemy
 
-    enemies = new Enemy();
+    enemy = new Enemy();
 
-//    enemiesTwo = new EnemyTwo();
+//    enemyTwo = new EnemyTwo();
 
     // Create Background Loop
 

@@ -12,6 +12,9 @@ var Enemy = function (){
   var isFiring = false;
   var x_direction = "right";
   var y_direction = "down";
+  var lastShotFired = new Date().getTime();
+  var shotCooldown  = 675;
+  var alive = true;
 
   var createEnemy = function(){
 
@@ -25,9 +28,6 @@ var Enemy = function (){
   var enemyFire = function() {
     bullets.push(new enemyBullet(left, top));
   }
-  setInterval(function(){
-    enemyFire();
-  }, 625);
 
   this.getPosition = function () {
     return {
@@ -42,7 +42,21 @@ var Enemy = function (){
     return element;
   }
 
+  this.alive = function (isAlive) {
+    if (isAlive === true || isAlive === false) {
+      alive = isAlive;
+    } else {
+      return alive;
+    }
+  };
+
   this.render = function(){
+
+    var currentTime = new Date().getTime();
+    if (lastShotFired + shotCooldown < currentTime) {
+      enemyFire();
+      lastShotFired = currentTime;
+    }
 
     if(top > 768){
       y_direction = "up"
@@ -87,10 +101,16 @@ var Enemy = function (){
         $(bullets[i].element).remove();
         bullets.splice(i,1);
       }
-
     }
-
   }
+
+  this.checkDeath = function () {
+    if (!alive & bullets.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   createEnemy();
 }

@@ -16,6 +16,15 @@ var heroBullet = function (x, y){
     element.style.left = (x + 12) + "px";
   }
 
+  this.getBulletInfo = function() {
+    return {
+      x: x,
+      y: y,
+      width: width,
+      height: height
+    }
+  }
+
   this.render = function(){
 
     y -= speed;
