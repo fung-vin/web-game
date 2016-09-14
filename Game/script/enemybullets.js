@@ -26,4 +26,13 @@ var enemyBullet = function (x, y){
     }
   }
 
+  this.getBulletInfo = function() {
+    return {
+      x: x,
+      y: y,
+      width: width,
+      height: height
+    }
+  }
+
 }

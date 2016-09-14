@@ -12,6 +12,7 @@ var Game = function(){
   var hero = null;
   var enemy = null;
   // var enemyTwo = null;
+  var self = this;
 
   // Controls
   var control = new Control();
@@ -21,11 +22,27 @@ var Game = function(){
       hero.render(control);
     }
 
+      var heroPosition   = hero.getPosition();   //gets hero position
+      var enemyBullets   = enemy.getBullets(); // gets enemy array
+
+      for (var i = 0; i < enemyBullets.length; i++) {
+        var enemyBullet = enemyBullets[i];
+        var eBulletInfo = enemyBullet.getBulletInfo();
+
+        if(eBulletInfo.x < heroPosition.left + heroPosition.width &&
+           eBulletInfo.x + eBulletInfo.width > heroPosition.left  &&
+           eBulletInfo.y < heroPosition.top + heroPosition.height &&
+           eBulletInfo.y + eBulletInfo.height > heroPosition.top) {
+          hero.getHero().remove();
+          hero.reduceHealth();
+        }
+      }
+
     if (enemy != null) {
       if (enemy.checkDeath()) {
         enemy = null;
       } else {
-        enemy.render(); // move bullets/enemy wether enemy is alive or not
+        enemy.render(); // move bullets/enemy wether enemy is alive or not for loop
 
         // Check for collision only if enemy is alive
         if (enemy.alive()) {
@@ -49,8 +66,8 @@ var Game = function(){
     }
   };
 
-  var animloop = function () {
-    requestAnimFrame(animloop);
+  this.animloop = function () {
+    requestAnimFrame(self.animloop);
     gameloop();
   };
 
@@ -81,7 +98,7 @@ var Game = function(){
     // Reset global gameing vars
 
 
-    animloop();
+    self.animloop();
   };
 }
 

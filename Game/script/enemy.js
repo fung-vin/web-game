@@ -13,7 +13,7 @@ var Enemy = function (){
   var x_direction = "right";
   var y_direction = "down";
   var lastShotFired = new Date().getTime();
-  var shotCooldown  = 675;
+  var shotCooldown  = 1000;
   var alive = true;
 
   var createEnemy = function(){
@@ -42,6 +42,10 @@ var Enemy = function (){
     return element;
   }
 
+  this.getBullets = function() {
+    return bullets;
+  }
+
   this.alive = function (isAlive) {
     if (isAlive === true || isAlive === false) {
       alive = isAlive;
@@ -56,6 +60,10 @@ var Enemy = function (){
     if (lastShotFired + shotCooldown < currentTime) {
       enemyFire();
       lastShotFired = currentTime;
+    }
+
+    if (alive == false) {
+      shotCooldown = 999999999999;
     }
 
     if(top > 768){

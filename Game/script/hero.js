@@ -25,6 +25,10 @@ var Hero = function(){
     return bullets;
   }
 
+  this.getHero = function() {
+    return element;
+  }
+
   this.render = function(control){
 
     if(control.key_up){
@@ -73,12 +77,34 @@ var Hero = function(){
       }
 
     }
-
-
   }
+
+  this.getPosition = function () {
+    return {
+      top: top,
+      left: left,
+      width: width,
+      height: height
+    }
+  }
+
+  this.checkDeath = function (){
+    if (!alive & bullets.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  this.reduceHealth = function(){
+    heroHealth -= 1;
+  }
+
 
   createHero();
 }
+
+
 
 
 var h = new Hero();
