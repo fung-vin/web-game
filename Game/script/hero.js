@@ -2,7 +2,7 @@ var Hero = function(){
 
   var height = 32;
   var width = 32;
-  var top = 600;
+  var top = 700;
   var left = 300;
   var speed = 4;
   var heroHealth = 3;
@@ -21,6 +21,9 @@ var Hero = function(){
     bullets.push(new heroBullet(left, top)); // creates new bullet for hero
   }
 
+  this.getBullets = function() {
+    return bullets;
+  }
 
   this.render = function(control){
 

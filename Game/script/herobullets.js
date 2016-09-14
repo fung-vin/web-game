@@ -3,7 +3,9 @@ var heroBullet = function (x, y){
 
   var x = x;
   var y = y;
-  var speed = 5;
+  var width = 10;
+  var height = 10;
+  var speed = 8;
   var element = null;
 
   var create = function(){
@@ -24,6 +26,7 @@ var heroBullet = function (x, y){
     }
 
   }
+
 
   create();
 }

@@ -1,10 +1,10 @@
-var Enemy = function (){
+var EnemyTwo = function (){
 
   var top = 0;
   var left = 0;
   var height = 32;
   var width = 32;
-  var xSpeed = 2;
+  var xSpeed = -2;
   var ySpeed = 3;
   var bullets = [];
   var element = null;
@@ -15,7 +15,7 @@ var Enemy = function (){
 
   var createEnemy = function(){
 
-    element = $('<div class="enemy"></div>')[0];
+    element = $('<div class="enemyTwo"></div>')[0];
     $('#gameboard').append(element);
     left = xGen;
     element.style.left = left + "px";
@@ -27,20 +27,8 @@ var Enemy = function (){
   }
   setInterval(function(){
     enemyFire();
-  }, 625);
 
-  this.getPosition = function () {
-    return {
-      top: top,
-      left: left,
-      width: width,
-      height: height
-    }
-  }
-
-  this.getEnemy = function() {
-    return element;
-  }
+  }, 750);
 
   this.render = function(){
 
@@ -61,12 +49,12 @@ var Enemy = function (){
     }
 
     if(x_direction == "left"){
-      left -= xSpeed;
+      left += xSpeed;
       element.style.left = left + "px";
     }
 
     if(x_direction == "right"){
-      left += xSpeed;
+      left -= xSpeed;
       element.style.left = left + "px";
     }
 
@@ -95,4 +83,4 @@ var Enemy = function (){
   createEnemy();
 }
 
-var e = new Enemy();
+var e = new EnemyTwo();

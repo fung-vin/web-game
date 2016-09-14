@@ -22,6 +22,8 @@ html, body {
   border: 2px solid black;
   margin: 0 auto;
   position: relative;
+  background-image: url("../image/wall_10.gif");
+/*  background-size: cover;*/
 }
 
 .bullet {
@@ -33,6 +35,15 @@ html, body {
 }
 
 .enemy {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 32px;
+  height: 32px;
+  background: url('../image/character.png') no-repeat;
+}
+
+.enemyTwo {
   position: absolute;
   top: 0px;
   left: 0px;

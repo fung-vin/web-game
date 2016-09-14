@@ -2,6 +2,8 @@ var enemyBullet = function (x, y){
 
   var x = x;
   var y = y;
+  var width = 10;
+  var height = 10;
   var speed = 4;
   var element = null;
 
