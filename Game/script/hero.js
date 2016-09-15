@@ -5,7 +5,7 @@ var Hero = function(){
   var top = 700;
   var left = 300;
   var speed = 4;
-  var heroHealth = 30;
+  var heroHealth = 150;
   var element = null;
   var bullets = [];
 

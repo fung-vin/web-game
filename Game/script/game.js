@@ -12,17 +12,17 @@ var Game = function(){
   var hero = null;
   var enemy = [];
   var totalEnemy = 100;
-  // var enemyTwo = null;
 
   // Controls
   var control = new Control();
 
   this.init = function(){
+
     // Create the player
     hero = new Hero();
-    // Create enemy
 
-    for (var i = 3; i >= 0; i--) {
+    // Create enemy
+    for (var i = 0; i < 4; i++) {
       enemy[i] = new Enemy();
     }
   }
@@ -91,6 +91,7 @@ var Game = function(){
                   heroBullets[i].getBullet().remove();
                   enemy[i].getEnemy().remove(); // only remove element from dom
                   enemy[i].alive(false); // set alive to false
+                  totalEnemy --;
                 }
               }
             }
@@ -102,6 +103,11 @@ var Game = function(){
       console.log("Game over, you are dead!");
       hero.getHero().remove();
     }
+
+    if(totalEnemy ==0){
+      console.log("You have won!");
+    }
+
   };
 
   this.animloop = function () {
