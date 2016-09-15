@@ -23,7 +23,9 @@ html, body {
   margin: 0 auto;
   position: relative;
   background-image: url("../image/wall_10.gif");
-/*  background-size: cover;*/
+  background-repeat:
+  background-position: 0px 0px;
+
 }
 
 .bullet {
