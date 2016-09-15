@@ -61,3 +61,7 @@ html, body {
   background-color: red;
   border-radius: 50%;
 }
+
+p{
+  text-align: center;
+}

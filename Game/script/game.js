@@ -46,7 +46,6 @@ var Game = function(){
     }
   }
 
-
   this.gameloop = function(){
 
     if(hero != null){
@@ -66,7 +65,6 @@ var Game = function(){
          eBulletInfo.y < heroPosition.top + heroPosition.height &&
          eBulletInfo.y + eBulletInfo.height > heroPosition.top) {
          bullets[i].getBullet().remove();
-         console.log("Hero got hit!");
          hero.reduceHealth();
       }
     }
@@ -99,6 +97,11 @@ var Game = function(){
           }
         }
       }
+
+    if(hero.getHealth() == 0){
+      console.log("Game over, you are dead!");
+      hero.getHero().remove();
+    }
   };
 
   this.animloop = function () {

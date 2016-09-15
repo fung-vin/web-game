@@ -5,7 +5,7 @@ var Hero = function(){
   var top = 700;
   var left = 300;
   var speed = 4;
-  var heroHealth = 3;
+  var heroHealth = 30;
   var element = null;
   var bullets = [];
 
@@ -88,21 +88,12 @@ var Hero = function(){
     }
   }
 
-  this.checkDeath = function (){
-    if (!alive & bullets.length == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   this.reduceHealth = function(){
-    heroHealth -= 1;
+    heroHealth -= 10;
   }
 
-  this.checkHealth = function (){
-    if(heroHealth == 0);
-    return true;
+  this.getHealth = function (){
+    return heroHealth;
   }
 
   createHero();
