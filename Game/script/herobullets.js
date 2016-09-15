@@ -25,6 +25,10 @@ var heroBullet = function (x, y){
     }
   }
 
+  this.getBullet = function() {
+    return element;
+  }
+
   this.render = function(){
 
     y -= speed;

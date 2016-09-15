@@ -49,8 +49,6 @@ var Game = function(){
 
   this.gameloop = function(){
 
-    console.log("loop");
-
     if(hero != null){
       hero.render(control);
     }
@@ -67,8 +65,9 @@ var Game = function(){
          eBulletInfo.x + eBulletInfo.width > heroPosition.left  &&
          eBulletInfo.y < heroPosition.top + heroPosition.height &&
          eBulletInfo.y + eBulletInfo.height > heroPosition.top) {
-        hero.getHero().remove();
-        hero.reduceHealth();
+         bullets[i].getBullet().remove();
+         console.log("Hero got hit!");
+         hero.reduceHealth();
       }
     }
 
@@ -91,7 +90,7 @@ var Game = function(){
                   bulletInfo.x + bulletInfo.width > enemyPosition.left &&
                   bulletInfo.y < enemyPosition.top + enemyPosition.height &&
                   bulletInfo.y +bulletInfo.height > enemyPosition.top) {
-                  totalEnemy -= 1;
+                  heroBullets[i].getBullet().remove();
                   enemy[i].getEnemy().remove(); // only remove element from dom
                   enemy[i].alive(false); // set alive to false
                 }

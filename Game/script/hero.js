@@ -100,6 +100,10 @@ var Hero = function(){
     heroHealth -= 1;
   }
 
+  this.checkHealth = function (){
+    if(heroHealth == 0);
+    return true;
+  }
 
   createHero();
 }
