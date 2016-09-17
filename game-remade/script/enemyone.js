@@ -1,4 +1,4 @@
-var Enemy = function (){
+var EnemyOne = function (){
 
   var left = 0;
   var top = 0;
@@ -49,4 +49,4 @@ var Enemy = function (){
 
 }
 
-var e = new Enemy();
+var e = new EnemyOne();

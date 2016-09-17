@@ -1,19 +1,17 @@
 var Game = function(){
 
-  // GAME SPRITIES
-
   var hero               = null;
   var healthPoints       = 3;
   var enemies            = [];
   var totalEnemies       = 100;
   var control            = new Control();
-  var currentTime        = e;
+  var lastEnemySpawn     = e;
   var enemyCooldownRange = 1000;
 
 
-  var genEnemies = function(){
+  var genEnemyOne = function(){
 
-    var newEnemy = new Enemy();
+    var newEnemy = new EnemyOne();
 
     enemies.push(newEnemy);
     totalEnemies--;
@@ -25,7 +23,6 @@ var Game = function(){
   var init = function(){
 
     // CREATES NEW HERO
-
     hero = new Hero();
 
   };
@@ -38,9 +35,10 @@ var Game = function(){
       hero.render(control);
     }
 
-    //ENEMY GENERATION
-    if (totalEnemies >= 50) {
-      genEnemies();
+    //GENERATE ENEMY TYPE 1
+    if (totalEnemies > 50) {
+      genEnemyOne();
+      document.getElementById("en-left").innerHTML = totalEnemies;
     }
 
   };
