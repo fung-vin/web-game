@@ -2,22 +2,23 @@ var Game = function(){
 
   // GAME SPRITIES
 
-  var hero         = null;
-  var enemies      = [];
-  var totalEnemies = 100;
-  var control      = new Control();
+  var hero               = null;
+  var healthPoints       = 3;
+  var enemies            = [];
+  var totalEnemies       = 100;
+  var control            = new Control();
+  var currentTime        = e;
   var enemyCooldownRange = 1000;
 
 
   var genEnemies = function(){
 
-    for (var i = 0; i < 50; i++) {
-      if(totalEnemies >= 50){
-        enemies[i] = new Enemy();
-      }
-      totalEnemies--;
-    }
-  }
+    var newEnemy = new Enemy();
+
+    enemies.push(newEnemy);
+    totalEnemies--;
+
+  };
 
   //INITATE GAME
 
@@ -27,7 +28,7 @@ var Game = function(){
 
     hero = new Hero();
 
-  }
+  };
 
   var gameloop = function(){
 
@@ -38,10 +39,11 @@ var Game = function(){
     }
 
     //ENEMY GENERATION
+    if (totalEnemies >= 50) {
+      genEnemies();
+    }
 
-
-
-  }
+  };
 
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||

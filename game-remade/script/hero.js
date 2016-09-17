@@ -20,7 +20,7 @@ var Hero = function(){
 
   var fire = function() {
 
-    bullets.push(new heroBullet(left, top));
+    bullets.push(new HeroBullet(left, top));
 
   }
 
