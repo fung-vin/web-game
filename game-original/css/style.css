@@ -10,10 +10,16 @@ html, body {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 32px;
-  height: 32px;
-  background: url('../image/character.png') no-repeat;
+  width: 51px;
+  height: 51px;
+  background: url('../image/doctor.png') no-repeat;
   }
+
+#hero.front-stand { background-position: 0px 0px; }
+#hero.left-stand { background-position: 0px -51px; }
+#hero.right-stand { background-position: 0px -102px; }
+#hero.back-stand { background-position: 0px -154px; }
+
 
 
 #gameboard {
@@ -40,18 +46,9 @@ html, body {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 32px;
-  height: 32px;
-  background: url('../image/character.png') no-repeat;
-}
-
-.enemyTwo {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 32px;
-  height: 32px;
-  background: url('../image/character.png') no-repeat;
+  width: 53px;
+  height: 51px;
+  background: url('../image/greenguyfinal.png') no-repeat;
 }
 
 .enemyBullet {

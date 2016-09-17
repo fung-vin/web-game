@@ -1,7 +1,7 @@
 var Hero = function(){
 
-  var height = 32;
-  var width = 32;
+  var height = 51;
+  var width = 51;
   var top = 700;
   var left = 300;
   var speed = 4;
@@ -36,14 +36,16 @@ var Hero = function(){
       if(top <= 0 ){
         top = 0;
       }
+      $('#hero').addClass('back-stand');
       element.style.top = top + "px";
     }
 
     if(control.key_down){
       top += speed;
-      if(top >= 768 ){
-        top = 768;
+      if(top >= 749 ){
+        top = 749;
       }
+      $('#hero').addClass('front-stand');
       element.style.top = top + "px";
     }
 
@@ -52,14 +54,16 @@ var Hero = function(){
       if(left <= 0 ){
         left = 0;
       }
+      $('#hero').addClass('left-stand');
       element.style.left = left + "px";
     }
 
     if(control.key_right){
       left += speed;
-      if(left >= 618 ){
-        left = 618;
+      if(left >= 599 ){
+        left = 599;
       }
+      $('#hero').addClass('right-stand');
       element.style.left = left + "px";
     }
 

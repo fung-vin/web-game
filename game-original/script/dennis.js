@@ -21,3 +21,21 @@ the way of including one function
 
     denis("reduceHealth")
     denis(enemy."alive")
+
+
+    the way of including one function
+
+
+    collision = function (object1, bullet, functionName) {
+
+        if(object1.left < object2.left + object2.width &&
+          object1.left + object1.width > object2.left  &&
+          object1.top < object2.top + object2.height &&
+          object1.top + object1.height > object2.top) {
+          obejct1[functionName]();
+          bullet[functionName]();
+        }
+      }
+
+
+    collision(hero, enemyBullet, "reduceHealth");

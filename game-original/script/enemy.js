@@ -2,8 +2,8 @@ var Enemy = function (){
 
   var top = 0;
   var left = 0;
-  var height = 32;
-  var width = 32;
+  var height = 51;
+  var width = 51;
   var xSpeed = 2;
   var ySpeed = 3;
   var bullets = [];
@@ -66,7 +66,7 @@ var Enemy = function (){
       shotCooldown = 999999999999;
     }
 
-    if(top > 768){
+    if(top > 749){
       y_direction = "up"
     }
 
@@ -74,7 +74,7 @@ var Enemy = function (){
       y_direction = "down"
     }
 
-    if(left > 618){
+    if(left > 599){
       x_direction = "left"
     }
 

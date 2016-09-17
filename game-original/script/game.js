@@ -100,7 +100,7 @@ var Game = function(){
       }
 
     if(hero.getHealth() == 0){
-      console.log("Game over, you are dead!");
+      alert("Game over, you are dead!");
       hero.getHero().remove();
     }
 

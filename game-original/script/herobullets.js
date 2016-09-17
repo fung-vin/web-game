@@ -13,7 +13,7 @@ var heroBullet = function (x, y){
     element = $('<div class="bullet"></div>')[0];
     $('#gameboard').append(element);
     element.style.top = (y + 50) + "px";
-    element.style.left = (x + 12) + "px";
+    element.style.left = (x + 21) + "px";
   }
 
   this.getBulletInfo = function() {

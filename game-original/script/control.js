@@ -50,6 +50,7 @@ var Control = function(){
           break;
       case "ArrowUp":
           self.key_up = true;
+          $('#hero').addClass('.back-stand');
           break;
       case "ArrowDown":
           self.key_down = true;

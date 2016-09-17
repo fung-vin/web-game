@@ -1,0 +1,81 @@
+/*GENERAL*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/*GAME BOARD*/
+
+#gameboard {
+  position: relative;
+  height: 800px;
+  width: 650px;
+  border: 1px solid black;
+  margin: 0 auto;
+  background-image: url("../image/wall_10.gif");
+  -webkit-animation: backgroundScroll 20s linear infinite;
+  animation: backgroundScroll 20s linear infinite;
+  animation-duration: 7s;
+}
+
+@-webkit-keyframes backgroundScroll {
+from {background-position: 0 0;}
+to {background-position: 0 800px;}
+}
+
+@keyframes backgroundScroll {
+from {background-position: 0 0;}
+to {background-position: 0 800px;}
+}
+
+/*HERO CHARACTER*/
+
+#hero {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 51px;
+  width: 51px;
+  background: url("../image/doctor.png") no-repeat;
+  background-position: 0px -153px;
+  }
+
+#hero.front {
+  background-position: 0px -0px;
+  }
+
+#hero.left {
+  background-position: 0px -51px;
+  }
+
+#hero.right {
+  background-position: 0px -103px;
+  }
+
+#hero.back {
+  background-position: 0px -153px;
+}
+
+/*HERO BULLETS*/
+
+.bullet {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: black;
+  border-radius: 50%;
+}
+
+/*ENEMY CHARACTER*/
+
+.enemy1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 51px;
+  width: 55px;
+  background: url("../image/greenguyfinal.png") no-repeat;
+}
