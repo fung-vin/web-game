@@ -16,14 +16,13 @@ var Hero = function(){
     element.style.top = top + "px";
     element.style.left = left + "px";
 
-  }
+  };
 
   var fire = function() {
 
     bullets.push(new HeroBullet(left, top));
 
-  }
-
+  };
 
   this.render = function(control){
 
@@ -67,15 +66,14 @@ var Hero = function(){
     for (var i = bullets.length - 1; i >= 0; i--) {
       bullets[i].render();
 
-      if(bullets[i].y < 0 ){
+      if(bullets[i].top < 0 ){
         $(bullets[i].element).remove();
         bullets.splice(i,1);
       }
 
     }
 
-
-  }
+  };
 
   createHero();
 }

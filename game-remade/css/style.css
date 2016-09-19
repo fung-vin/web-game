@@ -85,8 +85,6 @@ to {background-position: 0 800px;}
   background-position: 0px -153px;
 }
 
-/*HERO BULLETS*/
-
 .bullet {
   position: absolute;
   height: 10px;
@@ -104,4 +102,12 @@ to {background-position: 0 800px;}
   height: 51px;
   width: 55px;
   background: url("../image/greenguyfinal.png") no-repeat;
+}
+
+.enemy-bullet {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: red;
+  border-radius: 50%;
 }

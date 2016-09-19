@@ -7,12 +7,13 @@ var HeroBullet = function (left, top){
 
 
   var create = function(){
-    // Create Element
+
     element = $('<div class="bullet"></div>')[0];
     $('#gameboard').append(element);
     element.style.left = (left + 22) + "px";
     element.style.top = (top + 50) + "px";
-  }
+
+  };
 
   this.render = function(){
 
@@ -23,8 +24,9 @@ var HeroBullet = function (left, top){
       $(element).remove();
     }
 
-  }
+  };
 
   create();
-}
+
+};
 

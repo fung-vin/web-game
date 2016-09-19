@@ -1,19 +1,20 @@
 var Game = function(){
 
-  var hero               = null;
-  var healthPoints       = 3;
-  var enemies            = [];
-  var totalEnemies       = 100;
-  var control            = new Control();
-  var lastEnemySpawn     = e;
-  var enemyCooldownRange = 1000;
+  var hero                    = null;
+  var healthPoints            = 3;
+  var enemyOne                = [];
+  var totalEnemies            = 100;
+  var control                 = new Control();
+  var lastEnemySpawnOne       = null;
+  var nextEnemyCooldownOne    = null;
+  var enemyCooldownRangeOne   = 875;
 
 
   var genEnemyOne = function(){
 
     var newEnemy = new EnemyOne();
 
-    enemies.push(newEnemy);
+    enemyOne.push(newEnemy);
     totalEnemies--;
 
   };
@@ -36,9 +37,19 @@ var Game = function(){
     }
 
     //GENERATE ENEMY TYPE 1
-    if (totalEnemies > 50) {
+
+    var newTimeOne = new Date().getTime();
+    if (totalEnemies > 99 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
+      nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
+      lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
       document.getElementById("en-left").innerHTML = totalEnemies;
+    }
+
+    // RENDER ENEMY TYPE 1
+
+    for (var i = 0; i < enemyOne.length; i++) {
+      enemyOne[i].render();
     }
 
   };
