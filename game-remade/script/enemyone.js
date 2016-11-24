@@ -102,6 +102,15 @@ var EnemyOne = function (){
 
   };
 
+  this.getPosition = function() {
+    return {
+      top: top,
+      left: left,
+      width: width,
+      height: height
+    };
+  };
+
   createEnemy();
 
 };

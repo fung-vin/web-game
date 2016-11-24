@@ -22,7 +22,7 @@ var EnemyBulletOne = function (left, top){
 
     if (top > 800) {
       $(element).remove();
-    }
+    };
 
   };
 
