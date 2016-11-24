@@ -11,20 +11,33 @@ var Game = function(){
 
 
   var genEnemyOne = function(){
-
     var newEnemy = new EnemyOne();
 
     enemyOne.push(newEnemy);
     totalEnemies--;
-
   };
 
   //INITATE GAME
 
   var init = function(){
-
-    // CREATES NEW HERO
     hero = new Hero();
+  };
+
+  var collision = function (object1, object2, functionName1, functionName2) {
+    if(object1.left < object2.left + object2.width &&
+      object1.left + object1.width > object2.left  &&
+      object1.top < object2.top + object2.height &&
+      object1.top + object1.height > object2.top) {
+      obejct1[functionName1]();
+      object2[functionName2]();
+    };
+  };
+
+  var reduceHealth = function() {
+    healthPoints -= 1;
+  };
+
+  var removeBullet = function() {
 
   };
 
@@ -34,23 +47,23 @@ var Game = function(){
 
     if(hero != null){
       hero.render(control);
-    }
+    };
 
     //GENERATE ENEMY TYPE 1
 
     var newTimeOne = new Date().getTime();
-    if (totalEnemies > 99 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
+    if (totalEnemies > 98 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
       document.getElementById("en-left").innerHTML = totalEnemies;
-    }
+    };
 
     // RENDER ENEMY TYPE 1
 
     for (var i = 0; i < enemyOne.length; i++) {
       enemyOne[i].render();
-    }
+    };
 
   };
 
@@ -63,12 +76,10 @@ var Game = function(){
             };
   })();
 
-
   (function animloop(){
     requestAnimFrame(animloop);
     gameloop();
   })();
-
 
   document.addEventListener("DOMContentLoaded", function(event) {
     init();
