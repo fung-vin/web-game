@@ -44,6 +44,19 @@ var EnemyOne = function (){
     bullets.push(new EnemyBulletOne(left, top));
   };
 
+  this.getPosition = function() {
+    return {
+      top: top,
+      left: left,
+      width: width,
+      height: height
+    };
+  };
+
+  this.getSelf = function() {
+    return element;
+  };
+
   this.render = function(){
     var currentTime = new Date().getTime();
 
@@ -100,15 +113,6 @@ var EnemyOne = function (){
       element.style.top = top + "px";
     };
 
-  };
-
-  this.getPosition = function() {
-    return {
-      top: top,
-      left: left,
-      width: width,
-      height: height
-    };
   };
 
   createEnemy();

@@ -23,12 +23,12 @@ var Game = function(){
     hero = new Hero();
   };
 
-  var collision = function (object1, object2) {
+  var collision = function (object1, object2, function1) {
     if(object1.left < object2.left + object2.width &&
       object1.left + object1.width > object2.left  &&
       object1.top < object2.top + object2.height &&
       object1.top + object1.height > object2.top) {
-      console.log("We got a hit!");
+      function1();
     };
   };
 
@@ -52,7 +52,7 @@ var Game = function(){
 
     //GENERATE ENEMY TYPE 1
     var newTimeOne = new Date().getTime();
-    if (totalEnemies > 99 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
+    if (totalEnemies > 98 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
@@ -69,7 +69,12 @@ var Game = function(){
     for (var i = 0; i < enemyOne.length; i++) {
       var target2 = enemyOne[i];
       var target2pos = target2.getPosition();
-      collision(heroPosition, target2pos);
+
+      var removeEnemy = function() {
+        target2.getSelf().remove();
+      };
+
+      collision(heroPosition, target2pos, removeEnemy);
     };
 
   };
