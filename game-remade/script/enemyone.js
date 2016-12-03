@@ -41,7 +41,9 @@ var EnemyOne = function (){
   };
 
   var enemyFire = function(){
-    bullets.push(new EnemyBulletOne(left, top));
+    if (alive == true) {
+      bullets.push(new EnemyBulletOne(left, top));
+    }
   };
 
   this.getPosition = function() {
@@ -55,6 +57,18 @@ var EnemyOne = function (){
 
   this.getSelf = function() {
     return element;
+  };
+
+  this.alive = function (isAlive) {
+    if (isAlive === true || isAlive === false) {
+      alive = isAlive;
+    } else {
+      return alive;
+    }
+  };
+
+  this.getBulletsLength = function() {
+    return bullets.length;
   };
 
   this.render = function(){

@@ -9,31 +9,36 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: grey;
 }
 
-h2 {
-  text-align: center;
-}
+/* TITLE HOLDER */
 
-#game-information {
-  width: 650px;
+#title-card {
+  height: 134px;
+  width: 444px;
   margin: 0 auto;
+  background: url("../image/rnm-title-resized.png") no-repeat center;
 }
 
-#health{
-  float: left;
-  width: 49%;
-  border: 1px solid black;
+h4 {
+  text-align: center;
+  margin: 0px 0px 5px 0px;
 }
 
-#enemies-left{
-  float: right;
-  width: 49%;
-  text-align: right;
-  border: 1px solid black;
+#column1 {
+
 }
 
-/*GAME BOARD*/
+#column2 {
+
+}
+
+#column3 {
+
+}
+
+/* THE GAME BOARD */
 
 #gameboard {
   position: relative;
@@ -55,6 +60,27 @@ to {background-position: 0 800px;}
 @keyframes backgroundScroll {
 from {background-position: 0 0;}
 to {background-position: 0 800px;}
+}
+
+/* GAME INFOMRATION*/
+
+#game-information {
+  width: 650px;
+  margin: 0 auto;
+  color: black;
+}
+
+#health{
+  float: left;
+  width: 49%;
+  border: 1px solid black;
+}
+
+#enemies-left{
+  float: right;
+  width: 49%;
+  text-align: right;
+  border: 1px solid black;
 }
 
 /*HERO CHARACTER*/

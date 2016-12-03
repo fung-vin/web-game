@@ -3,7 +3,7 @@ var Game = function(){
   var hero                    = null;
   var healthPoints            = 3;
   var enemyOne                = [];
-  var totalEnemies            = 100;
+  var totalEnemies            = 75;
   var control                 = new Control();
   var lastEnemySpawnOne       = null;
   var nextEnemyCooldownOne    = null;
@@ -23,18 +23,19 @@ var Game = function(){
     hero = new Hero();
   };
 
-  var collision = function (object1, object2, function1) {
+  var collision = function (object1, object2, function1, function2) {
     if(object1.left < object2.left + object2.width &&
       object1.left + object1.width > object2.left  &&
       object1.top < object2.top + object2.height &&
       object1.top + object1.height > object2.top) {
       function1();
+      function2();
     };
   };
 
   var reduceHealth = function() {
-    // healthPoints -= 1;
-    console.log("hello");
+    healthPoints -= 1;
+    document.getElementById("heroHealth").innerHTML = healthPoints;
   };
 
   var removeBullet = function() {
@@ -52,7 +53,7 @@ var Game = function(){
 
     //GENERATE ENEMY TYPE 1
     var newTimeOne = new Date().getTime();
-    if (totalEnemies > 98 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
+    if (totalEnemies > 73 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
@@ -64,17 +65,18 @@ var Game = function(){
       enemyOne[i].render();
     };
 
-    // COLLISION
-
+    // COLLISION DETECTION
     for (var i = 0; i < enemyOne.length; i++) {
       var target2 = enemyOne[i];
       var target2pos = target2.getPosition();
 
       var removeEnemy = function() {
-        target2.getSelf().remove();
+        target2.alive(false);
+        target2.getSelf().remove();  // REMOVES ENEMY UNIT ELEMENT FROM DOM
       };
 
-      collision(heroPosition, target2pos, removeEnemy);
+      collision(heroPosition, target2pos, reduceHealth, removeEnemy);
+
     };
 
   };
