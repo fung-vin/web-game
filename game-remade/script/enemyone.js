@@ -67,6 +67,10 @@ var EnemyOne = function (){
     }
   };
 
+  this.getBullets = function() {
+    return bullets;
+  };
+
   this.getBulletsLength = function() {
     return bullets.length;
   };

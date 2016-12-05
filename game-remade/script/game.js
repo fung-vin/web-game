@@ -82,12 +82,26 @@ var Game = function(){
           var heroBullet = heroBullets[j];
           var heroBulletPosition = heroBullet.getBulletInfo();
           var removeHeroBullet = function() {
-            heroBullets[j].getBullet().remove();
+            heroBullet.getBullet().remove();
             heroBullets.splice(j,1);
           };
 
           collision(heroBulletPosition, tEnemyPosition, removeHeroBullet, removeEnemy);
         };
+
+      var eBullets = enemyOne[i].getBullets();
+
+      for (var l = 0; l < eBullets.length; l++) {
+        var enemyBullet = eBullets[l];
+        var enemyBulletPosition = enemyBullet.getBulletInfo();
+        var removeEnemyBullet = function() {
+          enemyBullet.getBullet().remove();
+          eBullets.splice(l,1);
+        };
+
+        collision(heroPosition, enemyBulletPosition, reduceHealth, removeEnemyBullet);
+      };
+
     };
 
   };

@@ -16,6 +16,19 @@ var EnemyBulletOne = function (left, top){
 
   };
 
+  this.getBullet = function() {
+    return element;
+  };
+
+  this.getBulletInfo = function() {
+    return {
+      left: left,
+      top: top,
+      width: width,
+      height: height
+    };
+  };
+
   this.render = function(){
     top += speed;
     element.style.top = top + "px";
