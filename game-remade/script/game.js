@@ -67,16 +67,27 @@ var Game = function(){
 
     // COLLISION DETECTION
     for (var i = 0; i < enemyOne.length; i++) {
-      var target2 = enemyOne[i];
-      var target2pos = target2.getPosition();
-
+      var tEnemy = enemyOne[i];
+      var tEnemyPosition = tEnemy.getPosition();
       var removeEnemy = function() {
-        target2.alive(false);
-        target2.getSelf().remove();  // REMOVES ENEMY UNIT ELEMENT FROM DOM
+        tEnemy.alive(false);
+        tEnemy.getSelf().remove();  // REMOVES ENEMY UNIT ELEMENT FROM DOM
       };
 
-      collision(heroPosition, target2pos, reduceHealth, removeEnemy);
+      collision(heroPosition, tEnemyPosition, reduceHealth, removeEnemy);
 
+      var heroBullets = hero.getBullets();
+
+        for (var j = 0; j < heroBullets.length; j++) {
+          var heroBullet = heroBullets[j];
+          var heroBulletPosition = heroBullet.getBulletInfo();
+          var removeHeroBullet = function() {
+            heroBullets[j].getBullet().remove();
+            heroBullets.splice(j,1);
+          };
+
+          collision(heroBulletPosition, tEnemyPosition, removeHeroBullet, removeEnemy);
+        };
     };
 
   };

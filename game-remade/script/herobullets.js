@@ -2,6 +2,8 @@ var HeroBullet = function (left, top){
 
   var left = left;
   var top = top;
+  var width = 10;
+  var height = 10;
   var speed = 8;
   var element = null;
 
@@ -13,6 +15,19 @@ var HeroBullet = function (left, top){
     element.style.left = (left + 22) + "px";
     element.style.top = (top + 50) + "px";
 
+  };
+
+  this.getBulletInfo = function() {
+    return {
+      left: left,
+      top: top,
+      width: width,
+      height: height
+    };
+  };
+
+  this.getBullet = function() {
+    return element;
   };
 
   this.render = function(){

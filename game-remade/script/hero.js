@@ -24,6 +24,10 @@ var Hero = function(){
 
   };
 
+  this.getBullets = function() {
+    return bullets;
+  };
+
   this.render = function(control){
 
     if(control.key_up){
