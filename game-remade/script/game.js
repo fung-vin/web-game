@@ -15,15 +15,16 @@ var uniq_fast = function (a) {
 
 var Game = function(){
 
-  var hero                    = null;
-  var healthPoints            = 3;
-  var enemyOne                = [];
-  var bullets                 = [];
-  var totalEnemies            = 75;
-  var control                 = new Control();
-  var lastEnemySpawnOne       = null;
-  var nextEnemyCooldownOne    = null;
-  var enemyCooldownRangeOne   = 875;
+  var hero                   = null;
+  var healthPoints           = 3;
+  var enemyOne               = [];
+  var bullets                = [];
+  var totalEnemies           = 10;
+  var control                = new Control();
+  var lastEnemySpawnOne      = null;
+  var nextEnemyCooldownOne   = null;
+  var enemyCooldownRangeOne  = 675;
+  var enemyCooldownRangeOne2 = 475;
 
 
   var genEnemyOne = function() {
@@ -61,9 +62,18 @@ var Game = function(){
 
     var heroPosition = hero.getPosition();
 
-    //GENERATE ENEMY TYPE 1
+    //GENERATE ENEMY TYPE 1 - TIME ONE
     var newTimeOne = new Date().getTime();
-    if (totalEnemies > 50 && (lastEnemySpawnOne + enemyCooldownRangeOne) < newTimeOne) {
+    if (totalEnemies > 25 && (lastEnemySpawnOne + enemyCooldownRangeOne) < newTimeOne) {
+      nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
+      lastEnemySpawnOne = newTimeOne;
+      genEnemyOne();
+      document.getElementById("en-left").innerHTML = totalEnemies;
+    };
+
+    //GENERATE ENEMY TYPE 1 - TIME TWO
+    var newTimeOne = new Date().getTime();
+    if (totalEnemies <= 10 && totalEnemies > 0 && (lastEnemySpawnOne + enemyCooldownRangeOne2) < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
@@ -127,6 +137,17 @@ var Game = function(){
 
     thingsRemoval(bulletsToRemoveTmp, bullets);
 
+    // WIN CONIDTION
+    if(enemyOne.length == 0 && totalEnemies == 0) {
+      $("#gameboard").append("<div id='win-cont'><h1 id='win-msg'>You have won!</h1></div>");
+      enemyOne.remove();
+    };
+
+    // LOSE CONDITION
+    if (healthPoints == 0) {
+      $("#gameboard").append("<div id='dead-cont'><h1 id='dead-msg'>You have lost!</h1></div>");
+      hero.remove();
+    };
   };
 
   // THINGS REMOVAL
@@ -147,6 +168,7 @@ var Game = function(){
               window.setTimeout(callback, 1000 / 60);
             };
   })();
+
 
   this.animloop = function () {
     var self = this;
