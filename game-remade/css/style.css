@@ -9,7 +9,7 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: grey;
+  background: url("../image/rickandmorty-background.jpg") center no-repeat;
 }
 
 /* TITLE HOLDER */

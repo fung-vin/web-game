@@ -9,7 +9,6 @@ var EnemyOne = function (){
   var x_direction          = "right";
   var y_direction          = "down";
   var element              = null;
-  var bullets              = [];
   var lastBulletShot       = null;
   var nextBulletCooldown   = null;
   var bulletCooldownRange  = 1000;
@@ -40,7 +39,7 @@ var EnemyOne = function (){
     element.style.left = left + "px";
   };
 
-  var enemyFire = function(){
+  this.enemyFire = function(bullets){
     if (alive == true) {
       bullets.push(new EnemyBulletOne(left, top));
     }
@@ -67,28 +66,12 @@ var EnemyOne = function (){
     }
   };
 
-  this.getBullets = function() {
-    return bullets;
-  };
-
-  this.getBulletsLength = function() {
-    return bullets.length;
-  };
-
-  this.render = function(){
+  this.render = function(bullets){
     var currentTime = new Date().getTime();
 
     if (lastBulletShot + bulletCooldownRange < currentTime) {
-      enemyFire();
+      this.enemyFire(bullets);
       lastBulletShot = currentTime;
-    };
-
-    for (var i = 0; i < bullets.length; i++) {
-      bullets[i].render();
-      if (bullets[i].top > 800) {
-        $(bullets[i].element).remove();
-        bullets[i].splice(i,1);
-      };
     };
 
     if (alive == false) {

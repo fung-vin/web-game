@@ -1,8 +1,24 @@
+var uniq_fast = function (a) {
+  var seen = {};
+  var out = [];
+  var len = a.length;
+  var j = 0;
+  for(var i = 0; i < len; i++) {
+    var item = a[i];
+    if(seen[item] !== 1) {
+      seen[item] = 1;
+      out[j++] = item;
+    }
+  }
+  return out;
+}
+
 var Game = function(){
 
   var hero                    = null;
   var healthPoints            = 3;
   var enemyOne                = [];
+  var bullets                 = [];
   var totalEnemies            = 75;
   var control                 = new Control();
   var lastEnemySpawnOne       = null;
@@ -18,7 +34,6 @@ var Game = function(){
   };
 
   //INITATE GAME
-
   var init = function(){
     hero = new Hero();
   };
@@ -38,12 +53,7 @@ var Game = function(){
     document.getElementById("heroHealth").innerHTML = healthPoints;
   };
 
-  var removeBullet = function() {
-    console.log("hello2");
-  };
-
   this.gameloop = function(){
-
     //RENDERS HERO IN GAME
     if(hero != null){
       hero.render(control);
@@ -53,7 +63,7 @@ var Game = function(){
 
     //GENERATE ENEMY TYPE 1
     var newTimeOne = new Date().getTime();
-    if (totalEnemies > 73 && lastEnemySpawnOne +enemyCooldownRangeOne < newTimeOne) {
+    if (totalEnemies > 50 && (lastEnemySpawnOne + enemyCooldownRangeOne) < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();
@@ -62,48 +72,71 @@ var Game = function(){
 
     // RENDER ENEMY TYPE 1
     for (var i = 0; i < enemyOne.length; i++) {
-      enemyOne[i].render();
+      enemyOne[i].render(bullets);
     };
 
     // COLLISION DETECTION
+    var enemiesToRemoveTmp = [];
+    var heroBulletsToRemoveTmp = [];
     for (var i = 0; i < enemyOne.length; i++) {
+      // COLLISION DETECTION FOR HERO TO ENEMY
       var tEnemy = enemyOne[i];
       var tEnemyPosition = tEnemy.getPosition();
       var removeEnemy = function() {
         tEnemy.alive(false);
-        tEnemy.getSelf().remove();  // REMOVES ENEMY UNIT ELEMENT FROM DOM
+        tEnemy.getSelf().remove();  // REMOVES ENEMY UNIT HTML BUT NOT FROM DOM
+        enemiesToRemoveTmp.push(i);
       };
-
       collision(heroPosition, tEnemyPosition, reduceHealth, removeEnemy);
 
+      // COLLISION DETECTION FOR HERO BULLET TO ENEMY
       var heroBullets = hero.getBullets();
 
-        for (var j = 0; j < heroBullets.length; j++) {
-          var heroBullet = heroBullets[j];
-          var heroBulletPosition = heroBullet.getBulletInfo();
-          var removeHeroBullet = function() {
-            heroBullet.getBullet().remove();
-            heroBullets.splice(j,1);
-          };
-
-          collision(heroBulletPosition, tEnemyPosition, removeHeroBullet, removeEnemy);
+      for (var j = 0; j < heroBullets.length; j++) {
+        var heroBullet = heroBullets[j];
+        var heroBulletPosition = heroBullet.getBulletInfo();
+        var removeHeroBullet = function() {
+          heroBullet.getBullet().remove();
+          heroBulletsToRemoveTmp.push(j);
         };
-
-      var eBullets = enemyOne[i].getBullets();
-
-      for (var l = 0; l < eBullets.length; l++) {
-        var enemyBullet = eBullets[l];
-        var enemyBulletPosition = enemyBullet.getBulletInfo();
-        var removeEnemyBullet = function() {
-          enemyBullet.getBullet().remove();
-          eBullets.splice(l,1);
-        };
-
-        collision(heroPosition, enemyBulletPosition, reduceHealth, removeEnemyBullet);
+        collision(heroBulletPosition, tEnemyPosition, removeHeroBullet, removeEnemy);
       };
-
     };
 
+    thingsRemoval(enemiesToRemoveTmp, enemyOne);
+    thingsRemoval(heroBulletsToRemoveTmp, hero.getBullets());
+
+    // RENDER BULLETS
+    var bulletsToRemoveTmp = [];
+    for (var i = 0; i < bullets.length; i++) {
+      if (bullets[i].render()) {
+        bulletsToRemoveTmp.push(i);
+      };
+    };
+
+    // COLLISION DETECTION FOR ENEMY BULLET TO HERO
+    for (var l = 0; l < bullets.length; l++) {
+      var enemyBullet = bullets[l];
+      var enemyBulletPosition = enemyBullet.getBulletInfo();
+      var removeEnemyBullet = function() {
+        enemyBullet.getBullet().remove();
+        bulletsToRemoveTmp.push(l)
+      };
+      collision(heroPosition, enemyBulletPosition, reduceHealth, removeEnemyBullet);
+    };
+
+    thingsRemoval(bulletsToRemoveTmp, bullets);
+
+  };
+
+  // THINGS REMOVAL
+  var thingsRemoval = function (arrayTmp, mainArray) {
+    var indexArray = uniq_fast(arrayTmp).sort(function(a, b){return b-a});
+
+    for (var i = 0; i < indexArray.length; i++) {
+      var index = indexArray[i];
+      mainArray.splice(index, 1);
+    }
   };
 
   window.requestAnimFrame = (function(){

@@ -35,8 +35,10 @@ var EnemyBulletOne = function (left, top){
 
     if (top > 800) {
       $(element).remove();
+      return true;
     };
 
+    return false;
   };
 
   create();
