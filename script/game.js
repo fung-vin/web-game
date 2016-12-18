@@ -16,10 +16,10 @@ var uniq_fast = function (a) {
 var Game = function(){
 
   var hero                   = null;
-  var healthPoints           = 3;
+  var healthPoints           = 5;
   var enemyOne               = [];
   var bullets                = [];
-  var totalEnemies           = 10;
+  var totalEnemies           = 50;
   var control                = new Control();
   var lastEnemySpawnOne      = null;
   var nextEnemyCooldownOne   = null;
@@ -73,7 +73,7 @@ var Game = function(){
 
     //GENERATE ENEMY TYPE 1 - TIME TWO
     var newTimeOne = new Date().getTime();
-    if (totalEnemies <= 10 && totalEnemies > 0 && (lastEnemySpawnOne + enemyCooldownRangeOne2) < newTimeOne) {
+    if (totalEnemies <= 25 && totalEnemies > 0 && (lastEnemySpawnOne + enemyCooldownRangeOne2) < newTimeOne) {
       nextEnemyCooldown = Math.random() * enemyCooldownRangeOne;
       lastEnemySpawnOne = newTimeOne;
       genEnemyOne();

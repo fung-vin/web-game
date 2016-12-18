@@ -28,8 +28,18 @@ h4 {
 
 /* STORY INFOMRATION*/
 
-#story-info * {
-  margin: 0 auto;
+#story-info {
+  width: 300px;
+  position: relative;
+  float: right;
+}
+
+/* GAME INSTRUCTIONS */
+
+#instruction-info {
+  width: 300px;
+  position: relative;
+  float: left;
 }
 
 /* THE GAME BOARD */
